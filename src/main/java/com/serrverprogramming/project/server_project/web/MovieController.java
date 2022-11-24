@@ -108,9 +108,9 @@ public class MovieController {
     @RequestMapping(value = "/saveMovie", method = RequestMethod.POST)
     @PreAuthorize("hasAuthority('ADMIN')")
     public String saveMovie(Movie movie) {
-    Movie save = movieRepository.save(movie);
-    System.out.println("-----------------------------------------"+ save.getId());
-    return "redirect:/addCasting/"+save.getId();
+        Movie save = movieRepository.save(movie);
+        System.out.println("-----------------------------------------"+ save.getId());
+        return "redirect:/addCasting/"+save.getId();
     }
 
     //the method to select the actors and return a update list of actors without the actors already selected
@@ -192,7 +192,7 @@ public class MovieController {
         linksStreamRepository.save(linksStream);
         return "redirect:/movieList";
     }
-
+    //method to find the user connected
     private String getUserDetails(){
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String usernameRequest = "";
@@ -243,6 +243,4 @@ public class MovieController {
         }
         return "redirect:/myList";
     }
-
-
 }

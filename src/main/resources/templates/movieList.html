@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>Movies</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+    <body style="margin-left: 10px">
+        <h1 style="margin-left: 5px">Movies Library</h1>
+        <br>
+        <div class="col-md-4" style="position: absolute; top: 30px; right: -90px;">
+            <form th:action="@{/logout}" method="post">
+                <input type="submit" value="Sign Out" class="btn btn-sm btn-danger"/>
+            </form>
+        </div>
+        <div class="col-md-4" style="position: absolute; top: 30px; right: -230px;">
+            <form th:action="@{/myList}" method="post">
+                <input type="submit" value="My List" class="btn btn-sm btn-info"/>
+            </form>
+        </div>
+        <div>
+            <form >
+                <input type="text" id="title" name="title" placeholder="Movie Title" th:value="${title}"/>
+                <input type="text" id="director" name="director" placeholder="Director lastname" th:value="${director}"/>
+                <button type="submit">Search</button>
+                <button type="button" onclick="window.location.href='/movieList'">Reset</button>
+            </form>
+        </div>
+        <br>
+        <table style="margin-left: 5px" class="table table-striped" >
+            <tr>
+                <!-- all tag empty are just for the layout -->
+                <th>Title</th>
+                <th>Time</th>
+                <th>Release</th>
+                <th>Category</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr th:each = "movie : ${movies}">
+                <td th:text="${movie.title}  "></td>
+
+                <td th:text="${movie.duration}  "></td>
+
+                <td th:text="${movie.release}  "></td>
+
+                <td th:text="${movie.category}"></td>
+                <td><a th:href="@{/watch(id=${movie.id})}" class="btn btn-info">Stream</a></td>
+                <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/editLink(id=${movie.id})}" class="btn btn-warning">Edit</a></td>
+                <td sec:authorize="hasAuthority('USER')"><a th:href="@{/addMyList(id=${movie.id})}" class="btn btn-default">Add My List</a></td>
+            </tr>
+        </table>
+        <p sec:authorize="hasAuthority('ADMIN')"><a href="/add" class="btn btn-success" >Add Movie</a></p>
+    </body>
+</html>

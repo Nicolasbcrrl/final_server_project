@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Creat an Actor</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+    </head>
+    <body style="margin-left: 10px">
+        <h1>All Actors</h1>
+        <br>
+        <table class="table table-striped" >
+            <tr>
+                <!-- all tag empty are just for the layout -->
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr th:each = "actor : ${actors}">
+                <td th:text="${actor.firstName}  "></td>
+                <td th:text="${actor.lastName}  "></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+        <h1>Creat an Actor</h1>
+        <br>
+        <div>
+            <form th:object="${actor}" th:action="@{saveActor}" action="#" method="post">
+                <label for="first">First Name</label>
+                <input type="text" id="first" th:field="*{firstName}" />
+                <br>
+                <br>
+                <label for="last">Last Name</label>
+                <input type="text" id="last" th:field="*{lastName}" />
+                <br>
+                <br>
+                <input type="submit" value="Save" />
+            </form>
+            <br>
+            <button><a th:href="@{/goBack}">Continue</a></button>
+            <br>
+            <br>
+
+        </div>
+    </body>
+</html>

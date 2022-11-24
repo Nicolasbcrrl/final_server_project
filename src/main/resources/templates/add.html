@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Creat Movie</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+    </head>
+    <body style="margin-left: 10px">
+        <h1>New Movie</h1>
+        <br>
+        <table class="table table-striped" >
+            <h4>Director</h4>
+            <tr>
+                <!-- all tag empty are just for the layout -->
+                <th><a th:href="@{/addDirector}" class="btn btn-warning">Add Director</a></th>
+            </tr>
+        </table>
+        <table class="table table-striped" >
+            <h4>Actors</h4>
+            <tr>
+                <!-- all tag empty are just for the layout -->
+                <th><a th:href="@{/addActor}" class="btn btn-warning">Add Actor</a></th>
+            </tr>
+
+        </table>
+        <table class="table table-striped" >
+            <h4>Movie</h4>
+            <tr>
+                <!-- all tag empty are just for the layout -->
+                <th><a th:href="@{/addMovie}" class="btn btn-warning">Add Movie</a></th>
+
+            </tr>
+        </table>
+        <table class="table table-striped" >
+            <h4>Links</h4>
+            <tr>
+                <!-- all tag empty are just for the layout -->
+                <th><a th:href="@{/addLink}" class="btn btn-warning">Add Link</a></th>
+
+            </tr>
+        </table>
+        <br>
+        <a href="/finish" class="btn btn-success" >Finish</a>
+    </body>
+</html>

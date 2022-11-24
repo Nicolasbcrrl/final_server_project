@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+    <head style="margin-left: 10px">
+        <title th:text="${movie.title}"></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+    </head>
+    <body style="margin-left: 10px">
+        <h1 th:text="${movie.title}"></h1>
+<!------------------------------------------director display----------------------------------------------------------------------------------------------------->
+        <table class="table table-striped" >
+            <tr>
+                <th th:text="'Film by ' + ${director.firstName} + ' ' +${director.lastName} + ' - ' +  ${movie.duration} + ' - ' + ${movie.release}"></th>
+            </tr>
+        </table>
+<!------------------------------------------category display----------------------------------------------------------------------------------------------------->
+        <table class="table table-striped" >
+            <tr>
+                <th th:text="'Category : ' + ${movie.category} "></th>
+            </tr>
+        </table>
+<!------------------------------------------casting display----------------------------------------------------------------------------------------------------->
+        <table class="table table-striped" >
+            <tr>
+                <th>Casting (main actors)</th>
+                <th></th>
+            </tr>
+            <tr th:each = "actor : ${actors}">
+                <td th:text="${actor.firstName} + ' ' + ${actor.lastName}"></td>
+                <td></td>
+            </tr>
+        </table>
+<!------------------------------------------director display----------------------------------------------------------------------------------------------------->
+        <div style="display: flex; flex-direction: row">
+            <span th:each = "stream : ${links}">
+                <p style="margin-left: 10px; margin-right: 10px"><a th:href="${stream.link}" th:text="${stream.provider} + ' ' + ${stream.price} + ' €'" class="btn btn-info"></a></p>
+            </span>
+
+        </div>
+    </body>
+</html>

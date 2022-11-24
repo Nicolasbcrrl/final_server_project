@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Add A Link</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+    </head>
+    <body style="margin-left: 10px">
+        <h1>Add A Stream Link</h1>
+        <br>
+        <br>
+        <div>
+            <form th:object="${linkStream}" th:action="@{saveLink}" action="#" method="post">
+                <label for="link">Link</label>
+                <input type="text" id="link" th:field="*{link}" />
+                <br>
+                <label>Provider</label>
+                <select name="provider" >
+                    <option th:each="providerOpt : ${T(com.serrverprogramming.project.server_project.domain.Provider).values()}"
+                            th:value="${providerOpt}" th:text="${providerOpt}"></option>
+                </select>
+                <br>
+                <label for="price">Price</label>
+                <input type="text" id="price" th:field="*{price}" />
+                <br>
+                <label for="movieList">Movie</label>
+                <select id="movieList" th:field="*{movie}">
+                    <option th:each="mov : ${movies}" th:value="${mov.id}" th:text="${mov.title}"></option>
+                </select>
+                <br>
+                <input type="submit" value="Save" />
+            </form>
+            <br>
+            <button><a th:href="@{/goBack}">Continue</a></button>
+        </div>
+    </body>
+</html>

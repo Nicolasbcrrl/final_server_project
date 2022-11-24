@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Creat an Director</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+    </head>
+    <body style="margin-left: 10px">
+        <h1>All Directors</h1>
+        <br>
+        <table class="table table-striped" >
+            <tr>
+                <!-- all tag empty are just for the layout -->
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr th:each = "dir : ${directors}">
+                <td th:text="${dir.firstName}  "></td>
+                <td th:text="${dir.lastName}  "></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+        <h1>Creat an Director</h1>
+        <br>
+        <div>
+            <form th:object="${director}" th:action="@{saveDirector}" action="#" method="post">
+                <label for="first">First Name</label>
+                <input type="text" id="first" th:field="*{firstName}" />
+                <br>
+                <br>
+                <label for="last">Last Name</label>
+                <input type="text" id="last" th:field="*{lastName}" />
+                <br>
+                <br>
+                <input type="submit" value="Save" />
+            </form>
+            <button><a th:href="@{/goBack}">Continue</a></button>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>My List</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+    <body style="margin-left: 10px">
+        <h1>My List</h1>
+        <br>
+        <br>
+        <table class="table table-striped" >
+            <tr>
+                <!-- all tag empty are just for the layout -->
+                <th>Title</th>
+                <th>Time</th>
+                <th>Release</th>
+                <th>Category</th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr th:each = "movie : ${movies}">
+                <td th:text="${movie.title}  "></td>
+
+                <td th:text="${movie.duration}  "></td>
+
+                <td th:text="${movie.release}  "></td>
+
+                <td th:text="${movie.category}"></td>
+                <td><a th:href="@{/watch(id=${movie.id})}" class="btn btn-info">Stream</a></td>
+                <td sec:authorize="hasAuthority('USER')"><a th:href="@{/removeMyList(id=${movie.id})}" class="btn btn-default">Remove My List</a></td>
+            </tr>
+        </table>
+        <br>
+        <a href="/finish" class="btn btn-danger" >Go Back</a>
+    </body>
+</html>

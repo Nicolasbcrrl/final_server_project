@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Add Casting</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+    </head>
+    <body style="margin-left: 10px">
+        <h1>Add Casting</h1>
+        <br>
+        <div>
+            <form th:object="${actor}" th:action="@{/saveCasting/{id}(id=${movie.id})}" action="#" method="post">
+                <label for="actor">Actors</label>
+                <select id="actor" th:field="*{id}" class="form-control">
+                    <option th:each="act : ${actors}" th:value="${act.id}" th:text="${act.firstName} + ' ' + ${act.lastName}"></option>
+                </select>
+                <br><br>
+                <input type="submit" value="Add Casting" />
+            </form>
+            <button><a th:href="@{/goBack}">Continue</a></button>
+
+        </div>
+    </body>
+</html>

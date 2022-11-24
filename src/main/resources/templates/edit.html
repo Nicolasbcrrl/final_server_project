@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <title th:text="'Edit ' + ${movie.title}"></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+    </head>
+    <body style="margin-left: 10px">
+        <h1 style="margin-left: 10px" th:text="'Edit Links of ' + ${movie.title}"></h1>
+        <br>
+
+        <!------------------------------------------casting display----------------------------------------------------------------------------------------------------->
+        <table class="table table-striped" >
+            <tr>
+                <th>Provider</th>
+                <th>Link</th>
+                <th></th>
+            </tr>
+            <tr th:if="${#lists.size(links)>0}" th:each = "stream : ${links}">
+                <td th:text="${stream.provider}"></td>
+                <td th:text="${stream.link}"></td>
+                <td><a th:href="@{/deleteLink/{id}(id=${stream.id})}" class="btn btn-danger">Delete</a></td>
+            </tr>
+        </table>
+        <h5 style="margin-left: 10px"> Add New Link</h5>
+        <br>
+        <form style="margin-left: 10px" th:object="${newLink}" th:action="@{saveModification(id=${movie.id})}" action="#" method="post">
+            <label for="link">Link</label>
+            <input type="text" id="link" th:field="*{link}" />
+            <br>
+            <label>Provider</label>
+            <select name="provider" >
+                <option th:each="providerOpt : ${T(com.serrverprogramming.project.server_project.domain.Provider).values()}"
+                        th:value="${providerOpt}" th:text="${providerOpt}"></option>
+            </select>
+            <br>
+            <label for="price">Price</label>
+            <input type="text" id="price" th:field="*{price}" />
+            <br>
+            <input type="submit" value="Save" />
+        </form>
+    </body>
+</html>
